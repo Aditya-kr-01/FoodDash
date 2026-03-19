@@ -1,21 +1,23 @@
-import React from 'react'
-import "./Nav.css"
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 function NavClient() {
   return (
-    <div className='mConatiner'>
-     
-      <div className='lContainer'>
-       <h2> FOOD APP CLIENT</h2>
-      </div>
-      <div className='rContainer'>
+    <div style={{
+      display: "flex",
+      justifyContent: "space-between",
+      background: "#0d6efd",
+      padding: "15px"
+    }}>
+      <h4 style={{ color: "white" }}>Client Panel</h4>
 
-        <a href="/foodlist">FOOD LIST</a>
-       <a href="/sfoodclient"> SEARCH FOOD</a>
-       <a href="/addorder">ADD ORDER</a>
-        <a href="/billing">BILLING</a>
+      <div>
+        <Link to="/foodlistclient" className="btn btn-light m-1">Menu</Link>
+        <Link to="/sfoodclient" className="btn btn-light m-1">Search</Link>
+        <Link to="/billing" className="btn btn-light m-1">Billing</Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default NavClient
+export default NavClient;
