@@ -1,22 +1,25 @@
-import React from 'react'
-import "./Nav.css"
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 function Nav() {
   return (
-    <div className='mConatiner'>
-     
-      <div className='lContainer'>
-       <h2> FOOD APP ADMIN</h2>
-      </div>
-      <div className='rContainer'>
-       <a href="/addfood">ADD FOOD</a>
-        <a href="/foodlist">FOOD LIST</a>
-       <a href="/delfood">DELETE FOOD</a>
-       <a href="/updfood">UPDATE FOOD</a>
-        <a href="/sfood">SEARCH FOOD</a>
-         <a href="/contact">CONTACT US</a>
+    <div style={{
+      display: "flex",
+      justifyContent: "space-between",
+      background: "#212529",
+      padding: "15px"
+    }}>
+      <h4 style={{ color: "white" }}>Admin Panel</h4>
+
+      <div>
+        <Link to="/addfood" className="btn btn-outline-light m-1">Add</Link>
+        <Link to="/foodlist" className="btn btn-outline-light m-1">List</Link>
+        <Link to="/delfood" className="btn btn-outline-light m-1">Delete</Link>
+        <Link to="/updfood" className="btn btn-outline-light m-1">Update</Link>
+        <Link to="/sfood" className="btn btn-outline-light m-1">Search</Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Nav
+export default Nav;
