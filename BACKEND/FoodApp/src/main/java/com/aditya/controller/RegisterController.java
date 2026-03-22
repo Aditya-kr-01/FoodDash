@@ -27,14 +27,14 @@ public class RegisterController {
 
     // LOGIN
     @PostMapping("/login")
-    public ResponseEntity<String> checkLogin(@RequestBody Register r) {
+    public ResponseEntity<Register> checkLogin(@RequestBody Register r) {
 
         Register user = rservice.checkLogin(r.getUname(), r.getPass());
 
         if (user != null) {
-            return ResponseEntity.ok("Login successful");
+            return ResponseEntity.ok(user);
         } else {
-            return new ResponseEntity<>("Invalid username or password", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
 }
