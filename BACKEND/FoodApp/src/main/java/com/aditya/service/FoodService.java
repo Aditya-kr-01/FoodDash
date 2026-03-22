@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.exception.ResourceNotFoundException;
+import com.aditya.exception.ResourceNotFoundException;
 import com.aditya.model.Food;
 import com.aditya.repository.FoodRepository;
 

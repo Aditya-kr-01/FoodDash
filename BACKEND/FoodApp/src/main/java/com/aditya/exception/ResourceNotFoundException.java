@@ -1,4 +1,4 @@
-package com.exception;
+package com.aditya.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 
