@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.exception.ResourceNotFoundException;
 import com.aditya.model.Food;
 import com.aditya.repository.FoodRepository;
 
@@ -14,42 +15,33 @@ public class FoodService {
     @Autowired
     private FoodRepository frepo;
 
-    // CREATE
     public void addData(Food f) {
         frepo.save(f);
     }
 
-    // READ ALL
     public List<Food> getData() {
         return frepo.findAll();
     }
 
-    // READ BY ID
     public Food getFidDetails(String fid) {
-        return frepo.findById(fid).orElse(null);
+        return frepo.findById(fid)
+                .orElseThrow(() -> new ResourceNotFoundException("Food not found with id: " + fid));
     }
 
-    // DELETE (SAFE)
     public void deleteData(String fid) {
-        Food f = frepo.findById(fid).orElse(null);
+        Food f = frepo.findById(fid)
+                .orElseThrow(() -> new ResourceNotFoundException("Food not found with id: " + fid));
 
-        if (f != null) {
-            frepo.delete(f);
-        } else {
-            throw new RuntimeException("Food not found with id: " + fid);
-        }
+        frepo.delete(f);
     }
 
-    // UPDATE
     public Food updateData(String fid, Food fs) {
-        Food f = frepo.findById(fid).orElse(null);
+        Food f = frepo.findById(fid)
+                .orElseThrow(() -> new ResourceNotFoundException("Food not found with id: " + fid));
 
-        if (f != null) {
-            f.setFname(fs.getFname());
-            f.setPrice(fs.getPrice());
-            return frepo.save(f);
-        }
+        f.setFname(fs.getFname());
+        f.setPrice(fs.getPrice());
 
-        return null;
+        return frepo.save(f);
     }
 }
