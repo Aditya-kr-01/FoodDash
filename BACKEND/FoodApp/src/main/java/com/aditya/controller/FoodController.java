@@ -17,46 +17,46 @@ import jakarta.validation.Valid;
 @CrossOrigin(origins = "http://localhost:3000")
 public class FoodController {
 
-	@Autowired
-	private FoodService fService;
+    @Autowired
+    private FoodService fService;
 
-	// CREATE
-	@PostMapping
-	public ResponseEntity<String> addData(@Valid @RequestBody Food f) {
-		fService.addData(f);
-		return new ResponseEntity<>("Food added successfully", HttpStatus.CREATED);
-	}
+    // CREATE
+    @PostMapping
+    public ResponseEntity<String> addData(@Valid @RequestBody Food f) {
+        fService.addData(f);
+        return new ResponseEntity<>("Food added successfully", HttpStatus.CREATED);
+    }
 
-	// READ ALL
-	@GetMapping
-	public ResponseEntity<List<Food>> getData() {
-		return ResponseEntity.ok(fService.getData());
-	}
+    // READ ALL
+    @GetMapping
+    public ResponseEntity<List<Food>> getData() {
+        return ResponseEntity.ok(fService.getData());
+    }
 
-	// READ BY ID
-	@GetMapping("/{fid}")
-	public ResponseEntity<Food> getFidDetails(@PathVariable String fid) {
-		Food f = fService.getFidDetails(fid);
-		if (f != null) {
-			return ResponseEntity.ok(f);
-		}
-		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
+    // READ BY ID
+    @GetMapping("/{fid}")
+    public ResponseEntity<Food> getFidDetails(@PathVariable String fid) {
+        Food f = fService.getFidDetails(fid);
+        if (f != null) {
+            return ResponseEntity.ok(f);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 
-	// DELETE
-	@DeleteMapping("/{fid}")
-	public ResponseEntity<String> deleteData(@PathVariable String fid) {
-		fService.deleteData(fid);
-		return ResponseEntity.ok("Food deleted successfully");
-	}
+    // DELETE
+    @DeleteMapping("/{fid}")
+    public ResponseEntity<String> deleteData(@PathVariable String fid) {
+        fService.deleteData(fid);
+        return ResponseEntity.ok("Food deleted successfully");
+    }
 
-	// UPDATE
-	@PutMapping("/{fid}")
-	public ResponseEntity<String> updateData(@PathVariable String fid, @Valid @RequestBody Food f) {
-		Food updated = fService.updateData(fid, f);
-		if (updated != null) {
-			return ResponseEntity.ok("Food updated successfully");
-		}
-		return new ResponseEntity<>("Food not found", HttpStatus.NOT_FOUND);
-	}
+    // UPDATE
+    @PutMapping("/{fid}")
+    public ResponseEntity<String> updateData(@PathVariable String fid, @Valid @RequestBody Food f) {
+        Food updated = fService.updateData(fid, f);
+        if (updated != null) {
+            return ResponseEntity.ok("Food updated successfully");
+        }
+        return new ResponseEntity<>("Food not found", HttpStatus.NOT_FOUND);
+    }
 }
