@@ -1,5 +1,10 @@
 package com.aditya.repository;
 
-public class OrderItemRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import com.aditya.model.OrderItem;
+
+@Repository
+public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
 }
