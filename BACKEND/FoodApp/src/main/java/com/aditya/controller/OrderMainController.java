@@ -17,4 +17,8 @@ public class OrderMainController {
     public String placeOrder(@PathVariable String uname) {
         return oservice.placeOrder(uname);
     }
+    @GetMapping("/bill/{oid}")
+    public String getBill(@PathVariable Integer oid) {
+        return oservice.generateBill(oid);
+    }
 }
