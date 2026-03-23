@@ -60,4 +60,22 @@ public class OrderMainService {
 
         return "Order Placed Successfully!";
     }
+ // 💳 Generate Bill
+    public String generateBill(Integer oid) {
+
+        List<OrderItem> items = oirepo.findByOid(oid);
+
+        double total = 0;
+
+        for (OrderItem item : items) {
+            total += item.getPrice() * item.getQuantity();
+        }
+
+        double gst = total * 0.05; // 5% GST
+        double finalAmount = total + gst;
+
+        return "Total: " + total +
+               "\nGST (5%): " + gst +
+               "\nFinal Amount: " + finalAmount;
+    }
 }
