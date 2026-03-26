@@ -1,0 +1,72 @@
+/* FULL SCREEN BACKGROUND */
+.home {
+    height: 100vh;
+    background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") center/cover no-repeat;
+    position: relative;
+}
+
+/* DARK OVERLAY */
+.overlay {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* GLASS CARD */
+.content {
+    text-align: center;
+    padding: 50px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+/* TITLE */
+.title {
+    font-size: 4rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 3px;
+    text-shadow: 0 0 25px rgba(255, 100, 100, 0.8);
+}
+
+/* SUBTITLE */
+.subtitle {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+/* BUTTONS */
+.buttons {
+    margin-top: 30px;
+}
+
+/* PRIMARY BUTTON */
+.buttons button {
+    padding: 12px 28px;
+    margin: 10px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    transition: 0.3s;
+}
+
+/* OUTLINE BUTTON */
+.buttons .outline {
+    background: transparent;
+    border: 2px solid white;
+}
+
+/* HOVER EFFECT */
+.buttons button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 75, 43, 0.7);
+}

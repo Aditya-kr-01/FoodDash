@@ -1,5 +1,4 @@
 import './App.css';
-import "bootstrap/dist/css/bootstrap.css";
 import { Routes, Route } from 'react-router-dom';
 
 import AddFood from './component/AddFood';
@@ -19,18 +18,13 @@ import Login from './component/Login';
 import Home from './component/Home';
 import Nav from './component/Nav';
 
+import "bootstrap/dist/css/bootstrap.css";
+
 function App() {
   return (
     <div>
-      <h1 style={{
-        textAlign: "center",
-        padding: "20px",
-        background: "#343a40",
-        color: "white",
-        margin: 0
-      }}>
-        🍔 FOOD DASHBOARD
-      </h1>
+
+      {/* ❌ REMOVED GLOBAL HEADING */}
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -51,6 +45,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
       </Routes>
+
     </div>
   );
 }
