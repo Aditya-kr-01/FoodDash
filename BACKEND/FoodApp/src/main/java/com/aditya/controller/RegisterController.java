@@ -27,4 +27,12 @@ public class RegisterController {
             return ResponseEntity.ok("LOGIN FAILED");
         }
     }
+ // ✅ REGISTER USER (ADD THIS ONLY)
+    @PostMapping("/add")
+    public ResponseEntity<String> addUser(@RequestBody Register user) {
+
+        rservice.addData(user);   // ✅ using your existing method
+
+        return ResponseEntity.ok("USER REGISTERED SUCCESSFULLY");
+    }
 }
