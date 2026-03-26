@@ -36,3 +36,4 @@ function FoodListClient() {
 }
 
 export default FoodListClient;
+// This component fetches food items from the backend and displays them in a card format. Each card shows the food image, name, category, price, and an "Add to Cart" button. The useEffect hook is used to fetch data when the component mounts, and the useState hook manages the food data state.
