@@ -1,106 +1,104 @@
-import React from 'react'
-import axios from 'axios'
-import { useState } from 'react'
-function Register() {
-    let[register,setRegister]=useState({
-        uname:"",
-        pass:"",
-        nm:"",
-        email:"",
-        phno:""
-     })
-     let[msg,setMsg]=useState("");
-     const refreshData=()=>{ 
-        setMsg("");
-        setRegister({ 
-        uname:"",
-        pass:"",
-        nm:"",
-        email:"",
-        phno:""
-        })
-     }
-     let[errors,setErrors]=useState({
-      euname:"",
-        epass:"",
-        enm:"",
-        eemail:"",
-        ephno:""
-      })
-      
-     const addData=()=>{ 
-       axios.post("http://localhost:1004/register/add",register)
-       .then((res)=>{ 
-       console.log(res.data);
-       setMsg("REGISTRATION SUCCESSFUL");
-       })
-       .catch((error)=>{ 
-        console.log(error);
-        setErrors({ 
-          euname:error.response.data.uname,
-            epass:error.response.data.pass,
-            enm:error.response.data.nm,
-            eemail:error.response.data.email,
-            ephno:error.response.data.phno,
-        })
-        //alert("SOMETHING WENT WRONG FOR STORING DATA");
-        
-       })
-     }
-  return (
-    <div style={{width:"30%",margin:"50px auto"}}>
-      <h2 className='text-primary'>REGISTER FORM</h2>
-       <input type='text' className='form-control' value={register.uname} 
-       onChange={(event)=>{ 
-        setRegister({ 
-            ...register,
-            uname:event.target.value
-        })
-       }}
-      placeholder='ENTER THE USERNAME'/>
-      <h2 style={{color:"red"}}>{errors.euname}</h2>
-      <input type='password' className='form-control' value={register.pass} 
-       onChange={(event)=>{ 
-        setRegister({ 
-            ...register,
-            pass:event.target.value
-        })
-       }}
-      placeholder='ENTER THE PASSWORD'/>
-      <h2 style={{color:"red"}}>{errors.epass}</h2>
-      <input type='text' className='form-control' value={register.nm} 
-       onChange={(event)=>{ 
-        setRegister({ 
-            ...register,
-            nm:event.target.value
-        })
-       }}
-      placeholder='ENTER THE NAME'/>
-      <h2 style={{color:"red"}}>{errors.enm}</h2>
-      <input type='text' className='form-control' value={register.email} 
-       onChange={(event)=>{ 
-        setRegister({ 
-            ...register,
-            email:event.target.value
-        })
-       }}
-      placeholder='ENTER THE EMAIL'/>
-      <h2 style={{color:"red"}}>{errors.eemail}</h2>
-      <input type='text' className='form-control' value={register.phno} 
-       onChange={(event)=>{ 
-        setRegister({ 
-            ...register,
-            phno:event.target.value
-        })
-       }}
-      placeholder='ENTER THE PHNO'/>
-      <h2 style={{color:"red"}}>{errors.ephno}</h2>
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Register.css';
 
-         <button className='btn btn-outline-primary' onClick={addData}>REGISTER</button> &nbsp;&nbsp;
-         <button className='btn btn-outline-secondary' onClick={refreshData}>REFRESH</button>
-          <h2>{ msg}</h2>
+function Register() {
+
+  const [register, setRegister] = useState({
+    uname: "",
+    pass: "",
+    nm: "",
+    email: "",
+    phno: ""
+  });
+
+  const [msg, setMsg] = useState("");
+
+  const addData = () => {
+    axios.post("http://localhost:1004/register/add", register)
+      .then(() => {
+        setMsg("Registration Successful ✅");
+      })
+     .catch((error) => {
+
+  console.log(error);
+
+  if (error.response && error.response.data) {
+    
+    const errors = error.response.data;
+    let msg = "";
+
+    if (errors.uname) msg += errors.uname + " ";
+    if (errors.pass) msg += errors.pass + " ";
+    if (errors.nm) msg += errors.nm + " ";
+    if (errors.email) msg += errors.email + " ";
+    if (errors.phno) msg += errors.phno + " ";
+
+    setMsg(msg || "Validation failed ❌");
+
+  } else {
+    // Backend not responding / network issue
+    setMsg("Server error or backend not running ❌");
+  }
+
+});
+  };
+
+  return (
+    <div className="register-page">
+
+      <div className="register-card">
+
+        <h2>Create Account 🚀</h2>
+
+        <input
+          type="text"
+          placeholder="Username"
+          value={register.uname}
+          onChange={(e) => setRegister({ ...register, uname: e.target.value })}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={register.pass}
+          onChange={(e) => setRegister({ ...register, pass: e.target.value })}
+        />
+
+        <input
+          type="text"
+          placeholder="Full Name"
+          value={register.nm}
+          onChange={(e) => setRegister({ ...register, nm: e.target.value })}
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={register.email}
+          onChange={(e) => setRegister({ ...register, email: e.target.value })}
+        />
+
+        <input
+          type="text"
+          placeholder="Phone Number"
+          value={register.phno}
+          onChange={(e) => setRegister({ ...register, phno: e.target.value })}
+        />
+
+        <button onClick={addData}>
+          Register
+        </button>
+
+        <p className="msg">{msg}</p>
+
+      </div>
+
     </div>
-  )
+    
+  );
+  
 }
 
-export default Register
+
+export default Register;
