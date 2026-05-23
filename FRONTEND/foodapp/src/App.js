@@ -8,10 +8,10 @@ import UpdateFood from './component/UpdateFood';
 import SearchFood from './component/SearchFood';
 import Contact from './component/Contact';
 
-import NavClient from './component/NavClient';
 import FoodListClient from './component/FoodListClient';
 import SearchFoodClient from './component/SearchFoodClient';
 import Billing from './component/Billing';
+import DashboardClient from './component/DashboardClient';
 
 import Register from './component/Register';
 import Login from './component/Login';
@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/nav' element={<Nav />} />
-        <Route path='/navclient' element={<NavClient />} />
+        <Route path='/navclient' element={<DashboardClient />} />
 
         <Route path='/addfood' element={<AddFood />} />
         <Route path='/foodlist' element={<FoodList />} />

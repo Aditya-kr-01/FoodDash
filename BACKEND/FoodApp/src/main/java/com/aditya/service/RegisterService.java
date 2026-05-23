@@ -13,6 +13,9 @@ public class RegisterService {
     private RegisterRepository rrepo;
 
     public void addData(Register r) {
+        if (r.getUname() != null && rrepo.existsById(r.getUname())) {
+            throw new IllegalArgumentException("USERNAME '" + r.getUname().toUpperCase() + "' IS ALREADY TAKEN");
+        }
 
         // 🔥 DEFAULT ROLE
         if (r.getRole() == null || r.getRole().isEmpty()) {

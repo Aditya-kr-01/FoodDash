@@ -16,15 +16,23 @@ function Login() {
   const checkLogin = () => {
     axios.get(`http://localhost:1004/register/login/${register.uname}/${register.pass}`)
       .then((res) => {
+        
+        const role = typeof res.data === 'string' ? res.data.trim().toUpperCase() : '';
 
         if (register.uname === 'admin' && register.pass === 'admin') {
+          sessionStorage.setItem("uname", "admin");
           navigate("/nav");
         }
-        else if (res.data === 'LOGIN SUCCESSFULL') {
+        else if (role === 'ADMIN') {
+          sessionStorage.setItem("uname", register.uname);
+          navigate("/nav");
+        }
+        else if (role === 'USER') {
+          sessionStorage.setItem("uname", register.uname);
           navigate("/navclient");
         }
         else {
-          setMsg(res.data);
+          setMsg("Login Failed ❌ Invalid credentials");
         }
 
       })
@@ -39,6 +47,7 @@ function Login() {
       <div className="login-card">
 
         <h2>Welcome Back 👋</h2>
+        <p className="subtitle">Login to your Tasty Bites account</p>
 
         <input
           type="text"

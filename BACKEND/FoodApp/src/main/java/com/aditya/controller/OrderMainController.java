@@ -7,7 +7,7 @@ import com.aditya.service.OrderMainService;
 
 @RestController
 @RequestMapping("/order")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000")
 public class OrderMainController {
 
     @Autowired

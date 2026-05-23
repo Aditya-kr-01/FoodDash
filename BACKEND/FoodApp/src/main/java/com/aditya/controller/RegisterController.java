@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 import com.aditya.model.Register;
 import com.aditya.service.RegisterService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/register")
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RegisterController {
 
     @Autowired
@@ -22,14 +23,18 @@ public class RegisterController {
         Register r = rservice.checkLogin(uname, pass);
 
         if (r != null) {
-            return ResponseEntity.ok("LOGIN SUCCESSFULL");
+            String role = r.getRole();
+            if (role == null || role.trim().isEmpty()) {
+                role = "USER";
+            }
+            return ResponseEntity.ok(role.trim().toUpperCase());
         } else {
             return ResponseEntity.ok("LOGIN FAILED");
         }
     }
  // ✅ REGISTER USER (ADD THIS ONLY)
     @PostMapping("/add")
-    public ResponseEntity<String> addUser(@RequestBody Register user) {
+    public ResponseEntity<String> addUser(@Valid @RequestBody Register user) {
 
         rservice.addData(user);   // ✅ using your existing method
 

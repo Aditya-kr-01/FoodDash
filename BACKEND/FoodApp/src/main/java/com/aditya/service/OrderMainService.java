@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.aditya.exception.ResourceNotFoundException;
 import com.aditya.model.Cart;
 import com.aditya.model.OrderItem;
 import com.aditya.model.OrderMain;
@@ -14,6 +16,7 @@ import com.aditya.repository.OrderItemRepository;
 import com.aditya.repository.OrderMainRepository;
 
 @Service
+@Transactional
 public class OrderMainService {
 
     @Autowired
@@ -49,7 +52,9 @@ public class OrderMainService {
             item.setQuantity(c.getQuantity());
 
             // fetch price from food table
-            Double price = frepo.findById(c.getFid()).get().getPrice();
+            Double price = frepo.findById(c.getFid())
+                    .orElseThrow(() -> new ResourceNotFoundException("Food not found with id: " + c.getFid()))
+                    .getPrice();
             item.setPrice(price);
 
             oirepo.save(item);

@@ -41,6 +41,9 @@ public class FoodService {
 
         f.setFname(fs.getFname());
         f.setPrice(fs.getPrice());
+        f.setCategory(fs.getCategory());
+        f.setDescription(fs.getDescription());
+        f.setImageUrl(fs.getImageUrl());
 
         return frepo.save(f);
     }

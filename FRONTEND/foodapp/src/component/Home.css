@@ -1,72 +1,136 @@
-/* FULL SCREEN BACKGROUND */
-.home {
-    height: 100vh;
-    background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") center/cover no-repeat;
-    position: relative;
+/* GrabFood Fullscreen Home Theme */
+.grab-home-fullscreen {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #ffffff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Guarantee NO scrolling */
 }
 
-/* DARK OVERLAY */
-.overlay {
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.65);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* BRAND HEADER */
+.grab-header {
+  height: 72px;
+  border-bottom: 1px solid #ebebeb;
+  z-index: 10;
 }
 
-/* GLASS CARD */
-.content {
-    text-align: center;
-    padding: 50px;
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 40px rgba(0,0,0,0.6);
+.brand-logo {
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  letter-spacing: -1px;
 }
 
-/* TITLE */
-.title {
-    font-size: 4rem;
-    font-weight: 800;
-    color: white;
-    letter-spacing: 3px;
-    text-shadow: 0 0 25px rgba(255, 100, 100, 0.8);
+/* SPLIT MAIN */
+.grab-main-split {
+  flex: 1;
+  display: flex;
+  height: calc(100vh - 72px);
+  overflow: hidden;
 }
 
-/* SUBTITLE */
-.subtitle {
-    margin-top: 15px;
-    font-size: 1.2rem;
-    color: #ddd;
+/* LEFT WORKSPACE */
+.split-left {
+  flex: 0 0 45%;
+  background-color: #ffffff;
+  overflow-y: auto; /* Just in case screen size is extremely small, but visually hidden */
+  z-index: 2;
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.02);
+}
+
+.hero-title-main {
+  font-size: 3.2rem;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+}
+
+.hero-desc {
+  font-size: 1.05rem !important;
+  line-height: 1.5;
+}
+
+.badge.bg-success-light {
+  background-color: #E6F7ED !important;
+  color: #00B14F !important;
+  font-size: 0.85rem;
+}
+
+/* SEARCH ADDRESS CARD */
+.search-card-fullscreen {
+  border: 1px solid #f0f0f0 !important;
+  box-shadow: 0 10px 25px rgba(0, 177, 79, 0.06) !important;
+}
+
+.search-card-fullscreen input:focus {
+  box-shadow: none;
+  background: white;
+}
+
+.search-card-fullscreen .input-group {
+  border: 2px solid #ebebeb;
+  transition: all 0.3s;
+}
+
+.search-card-fullscreen .input-group:focus-within {
+  border-color: #00B14F;
+}
+
+/* RIGHT DECORATIVE BANNER */
+.split-right {
+  flex: 1;
+  background: url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=1200") center/cover no-repeat;
+  position: relative;
+  z-index: 1;
+}
+
+.split-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(0,0,0,0.1));
 }
 
 /* BUTTONS */
-.buttons {
-    margin-top: 30px;
+.btn-success {
+  background-color: #00B14F !important;
+  border-color: #00B14F !important;
+  color: white !important;
+  transition: all 0.3s !important;
 }
 
-/* PRIMARY BUTTON */
-.buttons button {
-    padding: 12px 28px;
-    margin: 10px;
-    border-radius: 30px;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-    background: linear-gradient(45deg, #ff416c, #ff4b2b);
-    color: white;
-    transition: 0.3s;
+.btn-success:hover {
+  background-color: #009944 !important;
+  border-color: #009944 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 177, 79, 0.25) !important;
 }
 
-/* OUTLINE BUTTON */
-.buttons .outline {
-    background: transparent;
-    border: 2px solid white;
+.btn-outline-success {
+  color: #00B14F !important;
+  border-color: #00B14F !important;
+  transition: all 0.3s !important;
 }
 
-/* HOVER EFFECT */
-.buttons button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 75, 43, 0.7);
+.btn-outline-success:hover {
+  background-color: #00B14F !important;
+  color: white !important;
+  transform: translateY(-2px);
+}
+
+/* MEDIA QUERIES FOR SMALLER DEVICES */
+@media (max-width: 992px) {
+  .grab-main-split {
+    flex-direction: column;
+  }
+  .split-left {
+    flex: 1;
+    overflow-y: auto;
+  }
+  .split-right {
+    display: none;
+  }
 }

@@ -9,39 +9,52 @@ function Register() {
     pass: "",
     nm: "",
     email: "",
-    phno: ""
+    phno: "",
+    role: "USER"
   });
 
   const [msg, setMsg] = useState("");
 
   const addData = () => {
-    axios.post("http://localhost:1004/register/add", register)
-      .then(() => {
-        setMsg("Registration Successful ✅");
-      })
-     .catch((error) => {
 
-  console.log(error);
+    console.log("Sending Data:", register);
 
-  if (error.response && error.response.data) {
-    
-    const errors = error.response.data;
-    let msg = "";
+    axios.post("http://localhost:1004/register/add", register, {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then((res) => {
+      console.log(res.data);
+      setMsg("Registration Successful ✅");
 
-    if (errors.uname) msg += errors.uname + " ";
-    if (errors.pass) msg += errors.pass + " ";
-    if (errors.nm) msg += errors.nm + " ";
-    if (errors.email) msg += errors.email + " ";
-    if (errors.phno) msg += errors.phno + " ";
+      // reset form
+      setRegister({
+        uname: "",
+        pass: "",
+        nm: "",
+        email: "",
+        phno: "",
+        role: "USER"
+      });
+    })
+    .catch((error) => {
 
-    setMsg(msg || "Validation failed ❌");
+      console.log("FULL ERROR:", error);
 
-  } else {
-    // Backend not responding / network issue
-    setMsg("Server error or backend not running ❌");
-  }
-
-});
+      if (error.response) {
+        console.log("BACKEND ERROR:", error.response.data);
+        const errData = error.response.data;
+        if (typeof errData === 'object' && errData !== null) {
+          const errorMsgs = Object.values(errData).join(" | ");
+          setMsg(`Validation Failed: ${errorMsgs} ❌`);
+        } else {
+          setMsg(`${errData || "Registration failed"} ❌`);
+        }
+      } else {
+        setMsg("Server not reachable ❌");
+      }
+    });
   };
 
   return (
@@ -50,6 +63,7 @@ function Register() {
       <div className="register-card">
 
         <h2>Create Account 🚀</h2>
+        <p className="subtitle">Sign up for exclusive local food deliveries</p>
 
         <input
           type="text"
@@ -86,6 +100,16 @@ function Register() {
           onChange={(e) => setRegister({ ...register, phno: e.target.value })}
         />
 
+        <select 
+          className="form-select rounded-pill px-3 py-2 mb-3 text-dark bg-white border"
+          value={register.role}
+          onChange={(e) => setRegister({ ...register, role: e.target.value })}
+          style={{ width: "100%", fontSize: "0.95rem" }}
+        >
+          <option value="USER">Customer Signup 🛵</option>
+          <option value="ADMIN">Admin Signup ⚙️</option>
+        </select>
+
         <button onClick={addData}>
           Register
         </button>
@@ -95,10 +119,7 @@ function Register() {
       </div>
 
     </div>
-    
   );
-  
 }
-
 
 export default Register;
