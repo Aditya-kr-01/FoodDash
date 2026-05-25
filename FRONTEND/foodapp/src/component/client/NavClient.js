@@ -23,6 +23,7 @@ function NavClient() {
         <Link to="/foodlistclient" className="btn btn-outline-light btn-sm m-1 px-3">Menu</Link>
         <Link to="/sfoodclient" className="btn btn-outline-light btn-sm m-1 px-3">Search</Link>
         <Link to="/billing" className="btn btn-outline-light btn-sm m-1 px-3">Cart / Bill</Link>
+        <Link to="/ordersclient" className="btn btn-outline-light btn-sm m-1 px-3">My Orders 📜</Link>
         <button className="btn btn-warning btn-sm m-1 ms-3 px-3 fw-bold text-dark" onClick={handleLogout}>
           Logout 🚪
         </button>

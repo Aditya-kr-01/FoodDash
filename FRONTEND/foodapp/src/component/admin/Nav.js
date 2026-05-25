@@ -25,6 +25,7 @@ function Nav() {
         <Link to="/delfood" className="btn btn-outline-light btn-sm m-1">Delete</Link>
         <Link to="/updfood" className="btn btn-outline-light btn-sm m-1">Update</Link>
         <Link to="/sfood" className="btn btn-outline-light btn-sm m-1">Search</Link>
+        <Link to="/ordersadmin" className="btn btn-outline-light btn-sm m-1">Orders 📋</Link>
         <button className="btn btn-danger btn-sm m-1 ms-3 px-3 fw-semibold" onClick={handleLogout}>
           Logout 🚪
         </button>

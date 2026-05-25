@@ -83,4 +83,22 @@ public class OrderMainService {
                "\nGST (5%): " + gst +
                "\nFinal Amount: " + finalAmount;
     }
+
+    // 📋 Get all orders for a customer
+    public List<OrderMain> getOrdersByUser(String uname) {
+        return orepo.findByUname(uname);
+    }
+
+    // 🌐 Get all orders in the system (for Admin)
+    public List<OrderMain> getAllOrders() {
+        return orepo.findAll();
+    }
+
+    // ⚙️ Update status of an order (for Admin)
+    public OrderMain updateOrderStatus(Integer oid, String status) {
+        OrderMain order = orepo.findById(oid)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + oid));
+        order.setStatus(status);
+        return orepo.save(order);
+    }
 }

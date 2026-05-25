@@ -18,6 +18,9 @@ import Login from './component/common/Login';
 import Home from './component/common/Home';
 import Nav from './component/admin/Nav';
 
+import OrdersClient from './component/client/OrdersClient';
+import OrdersAdmin from './component/admin/OrdersAdmin';
+
 import "bootstrap/dist/css/bootstrap.css";
 
 function App() {
@@ -41,6 +44,8 @@ function App() {
         <Route path='/foodlistclient' element={<FoodListClient />} />
         <Route path='/sfoodclient' element={<SearchFoodClient />} />
         <Route path='/billing' element={<Billing />} />
+        <Route path='/ordersclient' element={<OrdersClient />} />
+        <Route path='/ordersadmin' element={<OrdersAdmin />} />
 
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
