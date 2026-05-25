@@ -1,22 +1,22 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
-import AddFood from './component/AddFood';
-import FoodList from './component/FoodList';
-import DeleteFood from './component/DeleteFood';
-import UpdateFood from './component/UpdateFood';
-import SearchFood from './component/SearchFood';
-import Contact from './component/Contact';
+import AddFood from './component/admin/AddFood';
+import FoodList from './component/admin/FoodList';
+import DeleteFood from './component/admin/DeleteFood';
+import UpdateFood from './component/admin/UpdateFood';
+import SearchFood from './component/admin/SearchFood';
+import Contact from './component/common/Contact';
 
-import FoodListClient from './component/FoodListClient';
-import SearchFoodClient from './component/SearchFoodClient';
-import Billing from './component/Billing';
-import DashboardClient from './component/DashboardClient';
+import FoodListClient from './component/client/FoodListClient';
+import SearchFoodClient from './component/client/SearchFoodClient';
+import Billing from './component/client/Billing';
+import DashboardClient from './component/client/DashboardClient';
 
-import Register from './component/Register';
-import Login from './component/Login';
-import Home from './component/Home';
-import Nav from './component/Nav';
+import Register from './component/common/Register';
+import Login from './component/common/Login';
+import Home from './component/common/Home';
+import Nav from './component/admin/Nav';
 
 import "bootstrap/dist/css/bootstrap.css";
 

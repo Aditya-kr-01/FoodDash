@@ -27,7 +27,7 @@ public class Food {
     @Column(length = 100)
     private String description;
 
-    @Column(length = 255)
+    @Column(length = 2000)
     private String imageUrl;
 
     public Food() {}

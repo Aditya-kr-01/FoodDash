@@ -27,7 +27,7 @@ function Login() {
           sessionStorage.setItem("uname", register.uname);
           navigate("/nav");
         }
-        else if (role === 'USER') {
+        else if (role === 'USER' || role === 'LOGIN SUCCESSFULL') {
           sessionStorage.setItem("uname", register.uname);
           navigate("/navclient");
         }

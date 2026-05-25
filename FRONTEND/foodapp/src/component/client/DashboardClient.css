@@ -33,7 +33,8 @@
   font-size: 24px !important;
   font-weight: 900 !important;
   letter-spacing: -0.5px;
-  color: #df383f !important; /* Premium Red */
+  color: #ffffff !important; /* Premium White logo to contrast with GrabFood Green background */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
 }
 
 /* Search bar styling */
@@ -64,7 +65,7 @@
 
 .nav-link-custom.active {
   color: #ffffff !important;
-  border-bottom-color: #df383f;
+  border-bottom-color: #ffffff;
 }
 
 /* Theme switch pill */
@@ -98,19 +99,22 @@
   left: 23px;
 }
 
-/* Logout Button (Transparent with Red Border) */
+/* Logout Button (Premium Semi-transparent white pill) */
 .btn-logout-red {
-  background: transparent !important;
-  border: 1.5px solid #df383f !important;
-  color: #df383f !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
   font-size: 0.85rem !important;
   letter-spacing: 0.5px;
   transition: all 0.3s ease !important;
 }
 
 .btn-logout-red:hover {
-  background: rgba(223, 56, 63, 0.1) !important;
+  background: #ffffff !important;
+  color: #00B14F !important;
+  border-color: #ffffff !important;
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* MAIN DASHBOARD PANEL */
@@ -156,22 +160,23 @@
   transform: scale(1.05) rotate(2deg);
 }
 
-/* Explore Menu Button (Solid Red) */
+/* Explore Menu Button (Solid Premium White to pop against green background) */
 .btn-explore-menu {
-  background-color: #df383f !important;
+  background-color: #ffffff !important;
   border: none !important;
-  color: white !important;
+  color: #00B14F !important;
   font-size: 1.05rem !important;
   font-weight: bold !important;
-  box-shadow: 0 4px 15px rgba(223, 56, 63, 0.45) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
   transition: all 0.3s ease !important;
   min-width: 200px;
 }
 
 .btn-explore-menu:hover {
-  background-color: #c92a31 !important;
+  background-color: #f8f9fa !important;
+  color: #008f3f !important;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(223, 56, 63, 0.6) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
 }
 
 /* Responsive fixes */

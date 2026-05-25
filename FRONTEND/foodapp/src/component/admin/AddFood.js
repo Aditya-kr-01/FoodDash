@@ -21,7 +21,7 @@ function AddFood() {
 
   const addData = () => {
     // Basic frontend check
-    if (!food.fid || !food.fname || !food.price) {
+    if (!food.fname || !food.price) {
       setMsg("Please fill out all required fields ❌");
       return;
     }
@@ -70,15 +70,13 @@ function AddFood() {
         <h2 className="text-primary mb-4">Add Food Item</h2>
 
         <div className="mb-3">
-          <label className="form-label fw-semibold">Food ID *</label>
+          <label className="form-label fw-semibold text-muted">Food ID</label>
           <input
             type="text"
-            className="form-control"
-            value={food.fid}
-            onChange={(e) => setFood({ ...food, fid: e.target.value })}
-            placeholder="e.g., F101"
+            className="form-control bg-light text-muted"
+            value="Auto-generated ✨"
+            disabled
           />
-          {errors.efid && <small className="text-danger">{errors.efid}</small>}
         </div>
 
         <div className="mb-3">

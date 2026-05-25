@@ -16,7 +16,7 @@ function DashboardClient() {
       {/* Top Transparent Glass Header */}
       <header className="tasty-glass-header px-4 py-2 d-flex align-items-center justify-content-between">
         {/* Brand Logo */}
-        <div className="dashboard-logo fw-bold fs-4 text-danger cursor-pointer" onClick={() => navigate("/navclient")}>
+        <div className="dashboard-logo fw-bold fs-4 text-white cursor-pointer" onClick={() => navigate("/navclient")}>
           TASTY BITES
         </div>
 

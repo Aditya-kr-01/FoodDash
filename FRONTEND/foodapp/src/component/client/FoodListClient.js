@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavClient from './NavClient';
-import './Food.css';
+import '../common/Food.css';
 
 function FoodListClient() {
   const [food, setFood] = useState([]);

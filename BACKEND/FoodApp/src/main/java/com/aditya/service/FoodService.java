@@ -16,6 +16,23 @@ public class FoodService {
     private FoodRepository frepo;
 
     public void addData(Food f) {
+        if (f.getFid() == null || f.getFid().trim().isEmpty()) {
+            List<Food> all = frepo.findAll();
+            int maxId = 100; // Start sequentially at 101
+            for (Food item : all) {
+                if (item.getFid() != null) {
+                    try {
+                        int idVal = Integer.parseInt(item.getFid().replaceAll("\\D", ""));
+                        if (idVal > maxId) {
+                            maxId = idVal;
+                        }
+                    } catch (Exception e) {
+                        // Ignore non-numeric IDs
+                    }
+                }
+            }
+            f.setFid(String.valueOf(maxId + 1));
+        }
         frepo.save(f);
     }
 
