@@ -78,7 +78,10 @@ function Billing() {
       })
       .catch((err) => {
         console.log(err);
-        setMsg("Checkout failed ❌");
+        const detailedError = err.response && err.response.data && typeof err.response.data === 'string'
+          ? err.response.data
+          : "Checkout failed ❌";
+        setMsg(detailedError);
       });
   };
 

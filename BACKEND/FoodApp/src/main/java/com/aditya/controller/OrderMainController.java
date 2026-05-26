@@ -17,8 +17,17 @@ public class OrderMainController {
     private OrderMainService oservice;
 
     @PostMapping("/place/{uname}")
-    public String placeOrder(@PathVariable String uname) {
-        return oservice.placeOrder(uname);
+    public org.springframework.http.ResponseEntity<String> placeOrder(@PathVariable String uname) {
+        try {
+            String result = oservice.placeOrder(uname);
+            return org.springframework.http.ResponseEntity.ok(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            String detailedError = "Error placing order: " + e.getMessage() + 
+                                   (e.getCause() != null ? " | Cause: " + e.getCause().getMessage() : "");
+            return org.springframework.http.ResponseEntity.status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(detailedError);
+        }
     }
     @GetMapping("/bill/{oid}")
     public String getBill(@PathVariable Integer oid) {
