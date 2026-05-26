@@ -59,65 +59,86 @@ h2::after {
   border-radius: 10px;
 }
 
-/* PREMIUM FLOATING CAPSULE NAVBAR */
-.tasty-nav-capsule {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
+/* PREMIUM FLOATING DARK CAPSULE NAVBAR */
+.tasty-nav-capsule-dark {
+  background: rgba(15, 23, 42, 0.95) !important; /* Premium Slate/Midnight Black */
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   border-radius: 50px !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3) !important;
   margin-top: 1.5rem !important;
-  background-image: linear-gradient(135deg, rgba(0, 177, 79, 0.95), rgba(0, 143, 63, 0.95)) !important;
 }
 
-.tasty-nav-capsule .brand-name {
+.tasty-nav-capsule-dark .brand-name {
   font-family: 'Outfit', sans-serif;
   letter-spacing: -0.8px;
   font-weight: 800;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
-.tasty-nav-capsule .brand-accent {
-  color: var(--secondary-color);
+.tasty-nav-capsule-dark .brand-accent {
+  color: var(--primary-color); /* Green brand accent */
 }
 
-.tasty-nav-capsule .user-welcome-badge {
+.tasty-nav-capsule-dark .brand-accent-admin {
+  color: #ef4444; /* Admin Crimson accent */
+}
+
+.tasty-nav-capsule-dark .user-welcome-badge {
   font-size: 0.85rem;
   color: var(--primary-color) !important;
   box-shadow: var(--shadow-sm);
   background: #ffffff !important;
+  margin-left: 12px;
 }
 
-.tasty-nav-capsule .nav-btn {
-  background: transparent;
-  border: 1px solid transparent;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.tasty-nav-capsule-dark .admin-badge {
+  font-size: 0.85rem;
+  color: #1e293b !important;
+  box-shadow: var(--shadow-sm);
+  background: #ffffff !important;
+  margin-left: 12px;
+}
+
+.tasty-nav-capsule-dark .nav-link-item {
+  color: rgba(255, 255, 255, 0.65) !important;
+  text-decoration: none;
   font-size: 0.9rem;
-  border-radius: 30px;
-}
-
-.tasty-nav-capsule .nav-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
-  color: white !important;
-}
-
-.tasty-nav-capsule .nav-btn-logout {
-  background: rgba(220, 53, 69, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  font-size: 0.9rem;
-  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.15);
+  padding: 8px 16px;
+  border-radius: 20px;
 }
 
-.tasty-nav-capsule .nav-btn-logout:hover {
-  background: rgb(220, 53, 69);
-  box-shadow: 0 6px 16px rgba(220, 53, 69, 0.35);
-  transform: translateY(-1px);
-  color: white !important;
+.tasty-nav-capsule-dark .nav-link-item:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.tasty-nav-capsule-dark .nav-link-item.active {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Call to Action: Solid White Pill Button */
+.tasty-nav-capsule-dark .nav-btn-solid-white {
+  background: #ffffff !important;
+  border: none !important;
+  color: #0f172a !important; /* Bold Slate-900 text */
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important;
+  padding: 8px 24px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15) !important;
+}
+
+.tasty-nav-capsule-dark .nav-btn-solid-white:hover {
+  background: #f1f5f9 !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.28) !important;
 }
 
 /* CARDS OVERRIDES */
@@ -279,50 +300,4 @@ input:focus, select:focus, textarea:focus {
 
 .animate-fade-in {
   animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* PREMIUM FLOATING CAPSULE ADMIN NAVBAR */
-.tasty-nav-capsule-admin {
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: 50px !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: var(--shadow-md);
-  margin-top: 1.5rem !important;
-  background-image: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)) !important; /* Premium Slate/Indigo Dark */
-}
-
-.tasty-nav-capsule-admin .brand-name-admin {
-  font-family: 'Outfit', sans-serif;
-  letter-spacing: -0.8px;
-  font-weight: 800;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-}
-
-.tasty-nav-capsule-admin .brand-accent-admin {
-  color: #ef4444; /* Premium Crimson admin accent */
-}
-
-.tasty-nav-capsule-admin .admin-badge {
-  font-size: 0.85rem;
-  color: #1e293b !important;
-  box-shadow: var(--shadow-sm);
-  background: #ffffff !important;
-}
-
-.tasty-nav-capsule-admin .nav-btn-admin {
-  background: transparent;
-  border: 1px solid transparent;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  font-size: 0.9rem;
-  border-radius: 30px;
-}
-
-.tasty-nav-capsule-admin .nav-btn-admin:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-1px);
-  color: white !important;
 }

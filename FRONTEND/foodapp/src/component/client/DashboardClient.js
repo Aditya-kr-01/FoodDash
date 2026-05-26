@@ -9,6 +9,8 @@ function DashboardClient() {
   const [foodList, setFoodList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [orders, setOrders] = useState([]);
+  const [bills, setBills] = useState({});
   const [favorites, setFavorites] = useState({});
   const [msg, setMsg] = useState("");
   const [addedItem, setAddedItem] = useState("");
@@ -61,6 +63,37 @@ function DashboardClient() {
       });
   }, []);
 
+  // Fetch actual user orders
+  useEffect(() => {
+    if (!uname || uname === "User") return;
+
+    axios.get(`http://localhost:1004/order/user/${uname}`)
+      .then((res) => {
+        // Sort orders so newest are first
+        const sorted = res.data.sort((a, b) => b.oid - a.oid);
+        setOrders(sorted.slice(0, 3)); // Only display the 3 most recent orders
+        
+        // Fetch bill details for each of these 3 orders
+        sorted.slice(0, 3).forEach((order) => {
+          axios.get(`http://localhost:1004/order/bill/${order.oid}`)
+            .then((billRes) => {
+              const text = billRes.data;
+              const finalAmountMatch = text.match(/Final Amount:\s*([\d.]+)/);
+              const finalAmount = finalAmountMatch ? finalAmountMatch[1] : "N/A";
+              setBills((prev) => ({
+                ...prev,
+                [order.oid]: {
+                  text: text,
+                  finalAmount: finalAmount
+                }
+              }));
+            })
+            .catch((err) => console.log(err));
+        });
+      })
+      .catch((err) => console.log(err));
+  }, [uname]);
+
   const addToCart = (item) => {
     if (!uname) {
       setMsg("Please login to add items to cart ❌");
@@ -90,6 +123,14 @@ function DashboardClient() {
       ...prev,
       [fid]: !prev[fid]
     }));
+  };
+
+  const getStatusBadge = (status) => {
+    const s = (status || "").toUpperCase();
+    if (s === "DELIVERED") return <span className="badge bg-success px-3 py-1 text-white fw-bold">Delivered ✅</span>;
+    if (s === "PREPARING") return <span className="badge bg-warning text-dark px-3 py-1 fw-bold">Preparing 🍳</span>;
+    if (s === "OUT FOR DELIVERY") return <span className="badge bg-info text-white px-3 py-1 fw-bold">Out for Delivery 🛵</span>;
+    return <span className="badge bg-secondary px-3 py-1 text-white fw-bold">Placed 🛒</span>;
   };
 
   // Filter foods based on category & search query
@@ -141,33 +182,7 @@ function DashboardClient() {
     }
   ];
 
-  // Hardcoded recent order items matching the circular mockup
-  const recentOrders = [
-    {
-      fid: "r1",
-      fname: "Japan Ramen",
-      price: "$5.59",
-      distance: "4.97 km",
-      time: "21 min",
-      imageUrl: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300"
-    },
-    {
-      fid: "r2",
-      fname: "Fried Rice",
-      price: "$5.59",
-      distance: "4.97 km",
-      time: "21 min",
-      imageUrl: "https://images.unsplash.com/photo-1603133872878-685f5888259a?w=300"
-    },
-    {
-      fid: "r3",
-      fname: "Pepperoni Pizza",
-      price: "$5.59",
-      distance: "4.97 km",
-      time: "21 min",
-      imageUrl: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300"
-    }
-  ];
+
 
   return (
     <div className="premium-dashboard">
@@ -364,44 +379,55 @@ function DashboardClient() {
           </div>
 
           <div className="row row-cols-1 row-cols-md-3 g-4">
-            {recentOrders.map((item) => {
-              const isFavorite = !!favorites[item.fid];
-              
-              return (
-                <div className="col" key={item.fid}>
-                  <div className="card h-100 recent-order-card shadow-sm border-0 p-4 text-center rounded-4 overflow-hidden position-relative">
-                    {/* Favorite Icon Top Right */}
-                    <button 
-                      className="btn favorite-btn-round position-absolute top-0 end-0 m-3 shadow-sm border-0"
-                      onClick={() => toggleFavorite(item.fid)}
-                    >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill={isFavorite ? "#ff4d4d" : "none"} stroke={isFavorite ? "#ff4d4d" : "#7f8c8d"} strokeWidth="2.5">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                      </svg>
-                    </button>
+            {orders.length > 0 ? (
+              orders.map((order) => {
+                const billInfo = bills[order.oid] || { finalAmount: "Calculating...", text: "" };
+                const formattedDate = order.orderDate ? new Date(order.orderDate).toLocaleDateString() : "Recent Order";
+                const isFavorite = !!favorites[order.oid];
+                
+                return (
+                  <div className="col animate-fade-in" key={order.oid}>
+                    <div className="card h-100 recent-order-card shadow-sm border-0 p-4 text-center rounded-4 overflow-hidden position-relative">
+                      {/* Favorite Icon Top Right */}
+                      <button 
+                        className="btn favorite-btn-round position-absolute top-0 end-0 m-3 shadow-sm border-0"
+                        onClick={() => toggleFavorite(order.oid)}
+                      >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill={isFavorite ? "#ff4d4d" : "none"} stroke={isFavorite ? "#ff4d4d" : "#7f8c8d"} strokeWidth="2.5">
+                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                      </button>
 
-                    {/* Circular Image Container */}
-                    <div className="circular-image-wrapper mx-auto my-3 shadow-sm">
-                      <img 
-                        src={item.imageUrl} 
-                        alt={item.fname}
-                        className="recent-food-circular-image"
-                      />
-                    </div>
+                      {/* Circular Bag/Box Icon Container */}
+                      <div className="circular-image-wrapper mx-auto my-3 shadow-sm d-flex align-items-center justify-content-center bg-light-gradient">
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#00B14F" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                          <line x1="3" y1="6" x2="21" y2="6" />
+                          <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
+                      </div>
 
-                    <h5 className="fw-extrabold text-dark mb-1">{item.fname}</h5>
-                    <div className="recent-price text-success fw-bold fs-5 mb-3">{item.price}</div>
-                    
-                    {/* Distance & Delivery Time */}
-                    <div className="delivery-metadata d-flex justify-content-center align-items-center gap-2 text-muted small">
-                      <span>{item.distance}</span>
-                      <span className="dot-divider">&bull;</span>
-                      <span>{item.time}</span>
+                      <h5 className="fw-extrabold text-dark mb-1">Order #TS-{order.oid}</h5>
+                      <div className="recent-price text-success fw-bold fs-5 mb-3">₹{billInfo.finalAmount}</div>
+                      
+                      {/* Delivery Date & Status Badge */}
+                      <div className="delivery-metadata d-flex flex-column align-items-center gap-2">
+                        <span className="small text-muted">{formattedDate}</span>
+                        {getStatusBadge(order.status)}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div className="col-12 text-center py-5 bg-white rounded-4 shadow-sm">
+                <h5 className="text-muted mb-3">No recent orders found! 🍔</h5>
+                <p className="text-secondary mb-4">Start ordering delicious meals to build up your history.</p>
+                <button className="btn btn-outline-success px-4 rounded-pill" onClick={() => navigate("/foodlistclient")}>
+                  Explore Menu
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

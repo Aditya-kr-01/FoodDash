@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
@@ -8,19 +8,25 @@ function Home() {
   return (
     <div className="grab-home-fullscreen">
       {/* Top Header */}
-      <header className="grab-header px-4 py-3 d-flex justify-content-between align-items-center bg-white shadow-sm">
-        <div className="brand-logo fw-bold fs-3 text-success">
-          Tasty<span className="text-dark">Bites</span> 🟢
+      <nav className="navbar navbar-expand-lg tasty-nav-capsule-dark my-3 mx-4 px-4 py-2 shadow-lg">
+        <div className="container-fluid d-flex justify-content-between align-items-center">
+          <Link to="/" className="navbar-brand fw-bold fs-3 text-white brand-name animate-fade-in" style={{ textDecoration: "none" }}>
+            Tasty<span className="brand-accent">Bites</span> 🍕
+          </Link>
+          
+          <div className="d-flex align-items-center gap-2 nav-actions">
+            <Link to="/" className="nav-link-item px-3 py-2 rounded-pill active">Home</Link>
+            <span className="nav-link-item px-3 py-2 rounded-pill cursor-pointer" onClick={() => navigate("/login")}>About</span>
+            <Link to="/contact" className="nav-link-item px-3 py-2 rounded-pill">Contact</Link>
+            <button className="btn nav-link-item px-3 py-2 rounded-pill border-0 bg-transparent ms-2" onClick={() => navigate("/login")}>
+              Login
+            </button>
+            <button className="btn nav-btn-solid-white px-4 py-2 rounded-pill" onClick={() => navigate("/register")}>
+              Sign Up
+            </button>
+          </div>
         </div>
-        <div className="d-flex gap-3">
-          <button className="btn btn-outline-success px-4 rounded-pill fw-bold" onClick={() => navigate("/login")}>
-            Login
-          </button>
-          <button className="btn btn-success px-4 rounded-pill fw-bold" onClick={() => navigate("/register")}>
-            Sign Up
-          </button>
-        </div>
-      </header>
+      </nav>
 
       {/* Fullscreen Split Layout (GrabFood Inspo) */}
       <div className="grab-main-split">
