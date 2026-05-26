@@ -10,7 +10,7 @@ import com.aditya.model.OrderMain;
 
 @RestController
 @RequestMapping("/order")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://food-dash-eosin.vercel.app"})
 public class OrderMainController {
 
     @Autowired
