@@ -16,38 +16,7 @@ function DashboardClient() {
   const [addedItem, setAddedItem] = useState("");
   const [loading, setLoading] = useState(true);
 
-  // Carousel slider state
-  const [currentSlide, setCurrentSlide] = useState(0);
-
   const uname = sessionStorage.getItem("uname") || "User";
-
-  // Banner details
-  const slides = [
-    {
-      id: 1,
-      image: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=1200",
-      title: "Everyday is Wing Day",
-      subtitle: "Sauced up goodness!",
-      price: "$6.99",
-      contact: "+123 456 789 0"
-    },
-    {
-      id: 2,
-      image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=1200",
-      title: "Double Cheese Feast",
-      subtitle: "Melty burger goodness",
-      price: "$5.59",
-      contact: "+123 456 789 0"
-    }
-  ];
-
-  useEffect(() => {
-    // Auto-slide banner carousel every 5 seconds
-    const slideInterval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(slideInterval);
-  }, [slides.length]);
 
   useEffect(() => {
     // Load catalog items from the backend
@@ -218,41 +187,33 @@ function DashboardClient() {
           </div>
         </div>
 
-        {/* 📢 Visual Promo Banner Slider */}
-        <div className="promo-banner-slider rounded-4 shadow-sm overflow-hidden mb-5">
-          <div className="slides-container" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-            {slides.map((slide) => (
-              <div 
-                className="banner-slide" 
-                key={slide.id}
-                style={{ backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.1) 80%), url(${slide.image})` }}
-              >
-                <div className="banner-content text-white p-5 d-flex flex-column justify-content-center">
-                  <div className="badge bg-warning text-dark mb-3 rounded-pill py-2 px-3 fw-bold align-self-start">
-                    SPECIAL OFFER
-                  </div>
-                  <h1 className="banner-title fw-black mb-1">{slide.title}</h1>
-                  <h3 className="banner-subtitle text-warning fw-bold mb-4">{slide.subtitle}</h3>
-                  <div className="d-flex align-items-center gap-4">
-                    <button className="btn btn-light rounded-pill fw-extrabold px-4 py-2 text-success shadow" onClick={() => navigate("/foodlistclient")}>
-                      Order Now &bull; {slide.price}
-                    </button>
-                    <span className="contact-info fw-semibold text-white-50">{slide.contact}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Slider Pagination Dots */}
-          <div className="slider-dots d-flex flex-column gap-2">
-            {slides.map((_, idx) => (
-              <div 
-                key={idx} 
-                className={`dot-indicator ${idx === currentSlide ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(idx)}
-              ></div>
-            ))}
+        {/* 📢 Visual Promo Banner */}
+        <div 
+          className="promo-banner rounded-4 shadow-sm overflow-hidden mb-5 animate-fade-in"
+          style={{ 
+            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.1) 80%), url(https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=1200)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '380px',
+            position: 'relative'
+          }}
+        >
+          <div className="banner-content text-white p-5 d-flex flex-column justify-content-center h-100">
+            <div className="badge bg-warning text-dark mb-3 rounded-pill py-2 px-3 fw-bold align-self-start">
+              SPECIAL OFFER
+            </div>
+            <h1 className="banner-title fw-black mb-1" style={{ fontFamily: 'Outfit, sans-serif', fontSize: '3.5rem', lineHeight: '1.05', letterSpacing: '-1.5px' }}>
+              Everyday is Wing Day
+            </h1>
+            <h3 className="banner-subtitle text-warning fw-bold mb-4" style={{ fontSize: '1.5rem', letterSpacing: '-0.2px' }}>
+              Sauced up goodness!
+            </h3>
+            <div className="d-flex align-items-center gap-4">
+              <button className="btn btn-light rounded-pill fw-extrabold px-4 py-2 text-success shadow" onClick={() => navigate("/foodlistclient")}>
+                Order Now &bull; $6.99
+              </button>
+              <span className="contact-info fw-semibold text-white-50">+123 456 789 0</span>
+            </div>
           </div>
         </div>
 
