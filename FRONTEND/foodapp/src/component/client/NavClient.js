@@ -11,24 +11,28 @@ function NavClient() {
   };
 
   return (
-    <div className="navbar navbar-dark px-4 py-2 shadow-sm" style={{ display: "flex", justifyContent: "space-between", background: "#00B14F" }}>
-      <div className="d-flex align-items-center">
-        <Link to="/navclient" className="navbar-brand fw-bold fs-4 text-white me-3" style={{ textDecoration: "none" }}>
-          Tasty Bites 🍕
-        </Link>
-        <span className="badge bg-light text-success fw-bold">Hello, {uname} 👋</span>
-      </div>
+    <nav className="navbar navbar-expand-lg tasty-nav-capsule my-3 mx-4 px-4 py-3 shadow-lg">
+      <div className="container-fluid d-flex justify-content-between align-items-center">
+        <div className="d-flex align-items-center">
+          <Link to="/navclient" className="navbar-brand fw-bold fs-3 text-white me-3 brand-name" style={{ textDecoration: "none" }}>
+            Tasty<span className="brand-accent">Bites</span> 🍕
+          </Link>
+          <span className="badge user-welcome-badge bg-light text-success fw-bold py-2 px-3 rounded-pill">
+            Hello, {uname} 👋
+          </span>
+        </div>
 
-      <div className="d-flex align-items-center">
-        <Link to="/foodlistclient" className="btn btn-outline-light btn-sm m-1 px-3">Menu</Link>
-        <Link to="/sfoodclient" className="btn btn-outline-light btn-sm m-1 px-3">Search</Link>
-        <Link to="/billing" className="btn btn-outline-light btn-sm m-1 px-3">Cart / Bill</Link>
-        <Link to="/ordersclient" className="btn btn-outline-light btn-sm m-1 px-3">My Orders 📜</Link>
-        <button className="btn btn-warning btn-sm m-1 ms-3 px-3 fw-bold text-dark" onClick={handleLogout}>
-          Logout 🚪
-        </button>
+        <div className="d-flex align-items-center gap-2 nav-actions">
+          <Link to="/foodlistclient" className="btn nav-btn px-3 py-2 rounded-pill fw-semibold text-white">Menu</Link>
+          <Link to="/sfoodclient" className="btn nav-btn px-3 py-2 rounded-pill fw-semibold text-white">Search</Link>
+          <Link to="/billing" className="btn nav-btn px-3 py-2 rounded-pill fw-semibold text-white">Cart / Bill</Link>
+          <Link to="/ordersclient" className="btn nav-btn px-3 py-2 rounded-pill fw-semibold text-white">My Orders 📜</Link>
+          <button className="btn nav-btn-logout px-3 py-2 rounded-pill fw-bold text-white ms-2" onClick={handleLogout}>
+            Logout 🚪
+          </button>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }
 

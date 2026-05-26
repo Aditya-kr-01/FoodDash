@@ -1,36 +1,328 @@
+/* 🌟 PREMIUM DESIGN SYSTEM FOR TASTY BITES 🌟 */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-gradient: linear-gradient(135deg, #00B14F, #008f3f);
+  --primary-hover-gradient: linear-gradient(135deg, #009944, #008039);
+  --primary-color: #00B14F;
+  --primary-light: #E6F7ED;
+  --secondary-color: #ffb03b;
+  --bg-color-light: #f8fafc;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --card-border: rgba(0, 0, 0, 0.05);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 12px 30px -10px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 20px 40px -15px rgba(0, 177, 79, 0.12), 0 1px 5px rgba(0, 177, 79, 0.02);
+}
+
 /* RESET + GLOBAL */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: var(--text-dark);
+  background: radial-gradient(at 50% 0%, #f0fdf4 0px, transparent 50%), 
+              radial-gradient(at 0% 0%, #f8fafc 0px, transparent 50%), 
+              #f1f5f9;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* HEADINGS */
+/* TYPOGRAPHY */
+h1, h2, h3, h4, h5, h6, .navbar-brand, .dashboard-hero-title {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
 h2 {
   text-align: center;
-  font-weight: bold;
+  font-size: 2.25rem;
+  letter-spacing: -0.5px;
+  position: relative;
+  margin-bottom: 2.5rem;
 }
 
-/* CENTER CONTAINER */
-.container-box {
-  width: 35%;
-  margin: 40px auto;
-  padding: 25px;
-  border-radius: 15px;
-  background: white;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--primary-gradient);
+  border-radius: 10px;
 }
 
-/* INPUTS */
-input {
-  margin-bottom: 10px !important;
+/* PREMIUM FLOATING CAPSULE NAVBAR */
+.tasty-nav-capsule {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-md);
+  margin-top: 1.5rem !important;
+  background-image: linear-gradient(135deg, rgba(0, 177, 79, 0.95), rgba(0, 143, 63, 0.95)) !important;
+}
+
+.tasty-nav-capsule .brand-name {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.8px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.tasty-nav-capsule .brand-accent {
+  color: var(--secondary-color);
+}
+
+.tasty-nav-capsule .user-welcome-badge {
+  font-size: 0.85rem;
+  color: var(--primary-color) !important;
+  box-shadow: var(--shadow-sm);
+  background: #ffffff !important;
+}
+
+.tasty-nav-capsule .nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.9rem;
+  border-radius: 30px;
+}
+
+.tasty-nav-capsule .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  color: white !important;
+}
+
+.tasty-nav-capsule .nav-btn-logout {
+  background: rgba(220, 53, 69, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.9rem;
+  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.15);
+}
+
+.tasty-nav-capsule .nav-btn-logout:hover {
+  background: rgb(220, 53, 69);
+  box-shadow: 0 6px 16px rgba(220, 53, 69, 0.35);
+  transform: translateY(-1px);
+  color: white !important;
+}
+
+/* CARDS OVERRIDES */
+.card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--glass-border) !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-radius: 24px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: rgba(0, 177, 79, 0.25) !important;
+}
+
+.card-header {
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.04) !important;
 }
 
 /* BUTTONS */
-button {
-  transition: 0.3s ease;
+.btn {
+  border-radius: 30px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  padding: 8px 20px;
 }
 
-button:hover {
-  transform: scale(1.05);
+.btn-primary {
+  background: var(--primary-gradient) !important;
+  border: none !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 177, 79, 0.2) !important;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover-gradient) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(0, 177, 79, 0.35) !important;
+}
+
+.btn-outline-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover {
+  background: var(--primary-gradient) !important;
+  color: white !important;
+  border-color: transparent !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 177, 79, 0.2) !important;
+}
+
+.btn-success {
+  background: var(--primary-gradient) !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 12px rgba(0, 177, 79, 0.2) !important;
+}
+
+.btn-success:hover {
+  background: var(--primary-hover-gradient) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(0, 177, 79, 0.3) !important;
+}
+
+/* INPUT OVERRIDES */
+input, select, textarea {
+  border-radius: 30px !important;
+  border: 1.5px solid #e2e8f0 !important;
+  padding: 12px 20px !important;
+  font-size: 0.95rem !important;
+  background: #f8fafc !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: var(--text-dark) !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  background: #ffffff !important;
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 4px rgba(0, 177, 79, 0.12) !important;
+  outline: none !important;
+}
+
+/* PREMIUM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* BADGES STYLING */
+.badge {
+  border-radius: 12px !important;
+  padding: 6px 14px !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2px;
+}
+
+.badge.bg-primary {
+  background-color: var(--primary-light) !important;
+  color: var(--primary-color) !important;
+  border: 1px solid rgba(0, 177, 79, 0.2) !important;
+}
+
+/* BILLING / CHECKOUT UI ENHANCEMENTS */
+.billing-checkout-summary {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1.5px solid rgba(0, 177, 79, 0.15) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* AUTHENTICATION PAGES (LOGIN / REGISTER) CARD UPGRADES */
+.login-card, .register-card {
+  border: 1.5px solid rgba(255, 255, 255, 0.8) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-radius: 30px !important;
+}
+
+/* GENERAL UTILITIES */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 8px 24px rgba(0, 177, 79, 0.25);
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* PREMIUM FLOATING CAPSULE ADMIN NAVBAR */
+.tasty-nav-capsule-admin {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-md);
+  margin-top: 1.5rem !important;
+  background-image: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95)) !important; /* Premium Slate/Indigo Dark */
+}
+
+.tasty-nav-capsule-admin .brand-name-admin {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.8px;
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.tasty-nav-capsule-admin .brand-accent-admin {
+  color: #ef4444; /* Premium Crimson admin accent */
+}
+
+.tasty-nav-capsule-admin .admin-badge {
+  font-size: 0.85rem;
+  color: #1e293b !important;
+  box-shadow: var(--shadow-sm);
+  background: #ffffff !important;
+}
+
+.tasty-nav-capsule-admin .nav-btn-admin {
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  font-size: 0.9rem;
+  border-radius: 30px;
+}
+
+.tasty-nav-capsule-admin .nav-btn-admin:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+  color: white !important;
 }
