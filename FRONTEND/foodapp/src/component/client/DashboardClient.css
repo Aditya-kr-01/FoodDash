@@ -1,195 +1,382 @@
-/* Fullscreen Dashboard Layout */
-.tasty-dashboard-fullscreen {
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: url("https://images.unsplash.com/photo-1544025162-d76694265947?w=1600") center/cover no-repeat;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
-  position: relative;
+/* 🌟 PREMIUM DASHBOARD CLIENT SPECIFIC STYLES 🌟 */
+
+.premium-dashboard {
+  background-color: #f8fafc;
+  min-height: 100vh;
+}
+
+/* 📍 LOCATION & SEARCH CAPSULE */
+.search-location-capsule {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.search-location-capsule:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(0, 177, 79, 0.1);
+}
+
+.location-section {
   display: flex;
-  flex-direction: column;
-  transition: filter 0.3s ease;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
 }
 
-/* Dark Mode Tint override */
-.tasty-dashboard-fullscreen.dark-mode {
-  filter: brightness(0.85) contrast(1.05);
+.location-icon {
+  font-size: 1.15rem;
 }
 
-/* FLOATING CAPSULE GLASS HEADER */
-.tasty-glass-header {
-  margin: 20px 40px 0 40px;
-  height: 70px;
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1.2px solid rgba(255, 255, 255, 0.22);
-  border-radius: 50px;
-  z-index: 10;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-}
-
-.dashboard-logo {
-  font-size: 24px !important;
-  font-weight: 900 !important;
-  letter-spacing: -0.5px;
-  color: #ffffff !important; /* Premium White logo to contrast with GrabFood Green background */
-  text-shadow: 0 2px 4px rgba(0,0,0,0.15);
-}
-
-/* Search bar styling */
-.dashboard-search-wrapper input {
-  font-size: 0.9rem;
-  background: rgba(255, 255, 255, 0.9) !important;
-  transition: all 0.3s;
-}
-
-.dashboard-search-wrapper input:focus {
-  background: white !important;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2) !important;
-}
-
-/* Nav links styling */
-.nav-link-custom {
-  color: rgba(255, 255, 255, 0.7) !important;
-  text-decoration: none;
+.location-text {
+  font-family: 'Outfit', sans-serif;
   font-size: 0.95rem;
-  transition: all 0.3s;
-  padding: 5px 10px;
-  border-bottom: 2px solid transparent;
+  color: var(--text-dark);
 }
 
-.nav-link-custom:hover {
+.divider-vertical {
+  width: 1.5px;
+  height: 28px;
+  background-color: #cbd5e1;
+}
+
+.search-section {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.search-input-field {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-size: 0.95rem !important;
+  color: var(--text-dark) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 📢 PROMOTIONAL CAROUSEL BANNER */
+.promo-banner-slider {
+  position: relative;
+  height: 380px;
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.slides-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.banner-slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.banner-content {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to right, rgba(15, 23, 42, 0.8) 25%, rgba(15, 23, 42, 0.2) 80%);
+}
+
+.banner-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3.5rem;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+}
+
+.banner-subtitle {
+  font-size: 1.5rem;
+  letter-spacing: -0.2px;
+}
+
+.contact-info {
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Dots vertical positioning */
+.slider-dots {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+.dot-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot-indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.dot-indicator.active {
+  background: var(--primary-color);
+  transform: scale(1.3);
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* 🏷️ CATEGORY CARD SYSTEM */
+.category-pill-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-pill-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+}
+
+.category-pill-card.active {
+  background-color: var(--primary-light);
+  border-color: var(--primary-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.category-icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Mockup Category specific color tones */
+.category-icon-wrapper.beverage {
+  color: #ff9f43;
+  background-color: #fff4eb;
+}
+
+.category-icon-wrapper.chicken {
+  color: #ffb03b;
+  background-color: #fefaf0;
+}
+
+.category-icon-wrapper.pizza {
+  color: #ee5253;
+  background-color: #ffeded;
+}
+
+.category-pill-card.active .category-icon-wrapper {
+  transform: scale(1.08);
+}
+
+.category-pill-card h6 {
+  font-size: 0.95rem;
+  letter-spacing: -0.2px;
+  color: var(--text-dark);
+}
+
+/* 🍔 POPULAR DISHES GRID OVERRIDES */
+.popular-item-card {
+  overflow: visible !important; /* Allow the discount tag and favorite button to pop slightly */
+}
+
+.bg-light-gradient {
+  background: radial-gradient(circle at center, #ffffff 30%, #f1f5f9 100%);
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px 24px 0 0;
+}
+
+.popular-food-image {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.15));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.popular-item-card:hover .popular-food-image {
+  transform: scale(1.06) rotate(3deg);
+}
+
+/* Badge Top Left styling override */
+.discount-item-badge {
+  font-size: 0.7rem !important;
+  padding: 6px 12px !important;
+  border-radius: 4px !important;
+  z-index: 2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
+}
+
+.bg-warning-orange {
+  background-color: #f97316 !important;
   color: white !important;
 }
 
-.nav-link-custom.active {
-  color: #ffffff !important;
-  border-bottom-color: #ffffff;
-}
-
-/* Theme switch pill */
-.switch-pill {
-  width: 44px;
-  height: 22px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  position: relative;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  transition: all 0.3s;
-}
-
-.switch-dot {
-  width: 16px;
-  height: 16px;
-  background: white;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px;
-  left: 3px;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.switch-pill.active {
-  background: #00B14F;
-}
-
-.switch-pill.active .switch-dot {
-  left: 23px;
-}
-
-/* Logout Button (Premium Semi-transparent white pill) */
-.btn-logout-red {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
-  color: #ffffff !important;
-  font-size: 0.85rem !important;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease !important;
-}
-
-.btn-logout-red:hover {
+/* Round heart favorite button overlay */
+.favorite-btn-round {
+  width: 36px;
+  height: 36px;
+  border-radius: 50% !important;
   background: #ffffff !important;
-  color: #00B14F !important;
-  border-color: #ffffff !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+  box-shadow: var(--shadow-sm);
 }
 
-/* MAIN DASHBOARD PANEL */
-.tasty-dashboard-main {
-  flex: 1;
-  background: rgba(0, 177, 79, 0.62); /* Glowing GrabFood Green layer */
-  backdrop-filter: blur(12px); /* Frosted Glassmorphism blur */
-  -webkit-backdrop-filter: blur(12px);
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-}
-
-.dashboard-hero-title {
-  font-size: 4.2rem;
-  font-weight: 900;
-  letter-spacing: 1.5px;
-  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-  margin: 0;
-}
-
-.dashboard-hero-subtitle {
-  font-size: 1.3rem;
-  color: #cccccc;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-}
-
-/* Centered emblem logo */
-.dashboard-logo-wrapper {
-  width: 220px;
-  height: 220px;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-  transition: all 0.4s ease;
-}
-
-.dashboard-logo-wrapper:hover {
-  transform: scale(1.05) rotate(2deg);
-}
-
-/* Explore Menu Button (Solid Premium White to pop against green background) */
-.btn-explore-menu {
+.favorite-btn-round:hover {
+  transform: scale(1.15) !important;
   background-color: #ffffff !important;
+}
+
+.favorite-btn-round svg {
+  transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* Gold rating stars */
+.rating-stars {
+  font-size: 1.15rem;
+}
+
+.star-filled {
+  color: #ffb03b;
+  margin-right: 2px;
+}
+
+.star-empty {
+  color: #e2e8f0;
+  margin-right: 2px;
+}
+
+/* Dynamic price text details */
+.price-tag {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900 !important;
+}
+
+/* Floating round green add button */
+.add-to-cart-circle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50% !important;
+  background: var(--primary-color) !important;
   border: none !important;
-  color: #00B14F !important;
-  font-size: 1.05rem !important;
-  font-weight: bold !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
-  transition: all 0.3s ease !important;
-  min-width: 200px;
+  color: #ffffff !important;
+  font-size: 1.6rem !important;
+  font-weight: 300 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 10px rgba(0, 177, 79, 0.3) !important;
 }
 
-.btn-explore-menu:hover {
-  background-color: #f8f9fa !important;
-  color: #008f3f !important;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25) !important;
+.add-to-cart-circle-btn:hover {
+  background: #009944 !important;
+  transform: scale(1.1) rotate(90deg) !important;
+  box-shadow: 0 6px 16px rgba(0, 177, 79, 0.45) !important;
 }
 
-/* Responsive fixes */
+/* 🍕 RECENT ORDERS CARD LAYOUT */
+.recent-order-card {
+  background: #ffffff !important;
+}
+
+.circular-image-wrapper {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+}
+
+.recent-food-circular-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.recent-order-card:hover .recent-food-circular-image {
+  transform: scale(1.08);
+}
+
+.recent-price {
+  font-family: 'Outfit', sans-serif;
+}
+
+.delivery-metadata {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.dot-divider {
+  color: #cbd5e1;
+}
+
+/* Global View all arrow transition link overrides */
+.btn-link:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+.arrow-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+/* Adaptive mobile layout adjustments */
 @media (max-width: 768px) {
-  .tasty-glass-header {
-    margin: 10px 15px 0 15px;
-    height: auto;
-    padding: 10px !important;
+  .search-location-capsule {
     flex-direction: column;
-    gap: 10px;
-    border-radius: 20px;
+    align-items: stretch;
+    border-radius: 18px;
+    padding: 10px;
   }
-  .dashboard-search-wrapper {
-    width: 100% !important;
+  .divider-vertical {
+    display: none;
+  }
+  .promo-banner-slider {
+    height: 300px;
+  }
+  .banner-title {
+    font-size: 2.2rem;
+  }
+  .banner-subtitle {
+    font-size: 1.15rem;
+  }
+  .slider-dots {
+    left: 12px;
   }
 }
